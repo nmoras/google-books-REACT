@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  background-image: url(./assets/background.jpg);
+  /* background-repeat: repeat; */
+}
+.container{
+  margin: 0;
+  padding: 0; 
+}
+div{
+  border: 1px solid black;
 }
 
 .App-logo {

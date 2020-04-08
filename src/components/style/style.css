@@ -1,0 +1,16 @@
+.headerdiv{
+    height: 100vh;
+}
+.searchdiv{
+    background: coral;
+    margin-top:5rem;
+    
+   
+}
+.searchrow{
+    margin-top: 10rem;
+    
+}
+div{
+    border: 1px solid black;
+}
