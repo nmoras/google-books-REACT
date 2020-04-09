@@ -1,17 +1,28 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './style/style.css'
+import BookData from './BookData';
 
-function SearchBar() {
-    const [myInput, setMyInput ] = useState ( '' );
+function SearchBar(props) {
+    const [myInput, setMyInput ] = useState ( ' ' );
+    const [ bookList, setBookList] = useState ( [ ] );
 
     function handleChange(e){
         e.preventDefault();
 
         let searchInput = e.target.value;
+        setMyInput(searchInput);
+        console.log(myInput)
     }
-    function handleClick(e){
+
+    async function handleClick(e){
         e.preventDefault();
+        let bookListResult = await fetch( `https://www.googleapis.com/books/v1/volumes?q=${myInput}` ).then( result => result.json()  )
+         let sortBookListResult = [...bookListResult]
         
+        setBookList( sortBookListResult )
+
+        console.log( bookListResult )
+        setMyInput(' ');
 
     }
 
@@ -20,13 +31,14 @@ function SearchBar() {
             <div class="row justify-content-center searchrow">
                         <div class="col-8 searchdiv p-4">
                             <div class="input-group mb-3 ">
-                                <input type="text" class="form-control" placeholder="Enter a book" onChange={handleChange}/>
+                                <input type="text" value={myInput} class="form-control" placeholder="Enter a book" onChange={handleChange}/>
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleClick}>Search</button>
+                                    <button class="btn btn-outline-secondary" value={myInput} type="button" id="button-addon2" onClick={handleClick}>Search</button>
                                 </div>
                             </div>
                         </div>
             </div>
+            <BookData bookList ={bookList} />
         </div>
     )
 }
