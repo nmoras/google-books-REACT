@@ -14,22 +14,12 @@ function SearchBar(props) {
         console.log(myInput)
     }
 
-    async function handleClick(e){
+   async function handleClick(e){
         e.preventDefault();
         let bookListResult = await fetch( `https://www.googleapis.com/books/v1/volumes?q=${myInput}` ).then( result => result.json()  )
         
         setBookList( bookListResult.items )
         // console.log(bookList);
-
-
-        // console.log( bookListResult );
-        // console.log(bookListResult.items[0].volumeInfo)
-        // console.log(bookListResult.items[0].volumeInfo.title)
-        // console.log(bookListResult.items[0].volumeInfo.authors)
-        // console.log(bookListResult.items[0].volumeInfo.description)
-        // console.log(bookListResult.items[0].volumeInfo.averageRating)
-        // console.log(bookListResult.items[0].volumeInfo.imageLinks.thumbnail)
-        // console.log(bookListResult.items[0].volumeInfo.infoLink)
         setMyInput(' ');
 
     }
@@ -46,8 +36,8 @@ function SearchBar(props) {
                             </div>
                         </div>
             </div>
-            <BookData bookList ={bookList} />
-        </div>
+            <BookData bookList={bookList}/>
+    </div>    
     )
 }
 
