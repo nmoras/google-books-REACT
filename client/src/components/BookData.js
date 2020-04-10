@@ -15,7 +15,7 @@ function BookData(props) {
     return (
         <div>
             {props.bookList.map( item => (
-                    <div class='row justify-content-center mt-2' style={{backgroundColor: "white"}}>
+                    <div class='row mt-2' style={{backgroundColor: "white"}}>
                          <div class='col-11 p-2' >
                              <div class="row">
                                 <div class="col-3 imgcontainer">
@@ -41,11 +41,13 @@ function BookData(props) {
                                                     <strong>Infolink:</strong> {item.volumeInfo.infoLink}
                                                 </li>
                                             </ul>
-                                        </div>
-                                        <div>
-                                            <button style={{bacgroundColor: 'black', padding: '5px', color: 'white'}}>View</button>
-                                            <button onClick={handleClick}>Save</button>
-                                        
+                                            
+                                            <div class="row justify-content-center">
+                                                <div class="col">
+                                                    <button style={{backgroundColor: 'black', padding: '1rem', color: 'white'}}>View</button>
+                                                    <button onClick={handleClick} style={{backgroundColor: 'black', padding: '1rem', color: 'white'}}>Save</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                
