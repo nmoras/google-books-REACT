@@ -23,6 +23,7 @@ function BookData(props) {
                             infoLink: data.infoLink,
                             image: data.imageLinks.thumbnail
         } 
+        console.log(saveBookData)
 
         let apiBooks = await fetch('/api/post/book', {
             method: 'POST',
