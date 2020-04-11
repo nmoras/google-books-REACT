@@ -4,25 +4,39 @@ import React from 'react'
 function BookData(props) {
     console.log('the props is', props)
     // console.log(props.bookList[0].volumeInfo.title);
+
     const Style = {
         listtype: {listStyleType: 'none'},
     };
 
-    function handleViewClick(url){
+    function handleViewBook(url){
         window.location = url;
 
     }
 
-    function handleSaveClick(){
-       console.log('i am saved')
+    async function handleSaveBook(data){
+        // console.log( 'the data to save in the server', data)
+        let saveBookData = {
+                            title: data.title,
+                            authors: data.authors,
+                            description: data.description,
+                            infoLink: data.infoLink,
+                            image: data.imageLinks.thumbnail
+        } 
+
+        let apiBooks = await fetch('/api/post/book', {
+            method: 'POST',
+            body: JSON.stringify(saveBookData)
+        }).then( result=>result.json())
+       
    }
   
     
     return (
         <div>
             {props.bookList.map( item => (
-                    <div class='row justify-content-center mt-2' style={{backgroundColor: "white"}}>
-                         <div class='col-11 p-2' >
+                    <div class='row justify-content-center mt-2'>
+                         <div class='col-10 p-2' >
                              <div class="row">
                                 <div class="col-3 imgcontainer">
                                     <img class="img-thumbnail" alt={item.volumeInfo.title} src={item.volumeInfo.imageLinks.thumbnail} />
@@ -51,7 +65,7 @@ function BookData(props) {
                                             <div class="row justify-content-center">
                                                 <div class="col-4">
                                                     <button onClick={() => handleViewBook(item.volumeInfo.infoLink)} style={{backgroundColor: 'black', padding: '1rem', color: 'white'}}>View</button>
-                                                    <button onClick={handleSaveBook} style={{backgroundColor: 'black', padding: '1rem', color: 'white'}}>Save</button>
+                                                    <button onClick={() => handleSaveBook(item.volumeInfo)} style={{backgroundColor: 'black', padding: '1rem', color: 'white'}}>Save</button>
                                                 </div>
                                             </div>
                                         </div>

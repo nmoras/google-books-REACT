@@ -1,11 +1,11 @@
 import React from 'react'
 
 function Favorites() {
-    const [books, setBooks] = useState( )
-    async function loadFavorites(){
-        const apiBooks = await fetch('/api/favorites/list').then( result => result.json() )
-        setBooks( apiBooks )
-    }
+    // const [books, setBooks] = useState( )
+    // async function loadFavorites(){
+    //     const apiBooks = await fetch('/api/favorites/list').then( result => result.json() )
+    //     setBooks( apiBooks )
+    // }
     return (
         <div class="row">
             <div class="col-md-4 d-flex flex-row justify-content-around">
