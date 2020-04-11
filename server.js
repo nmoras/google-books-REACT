@@ -6,8 +6,9 @@ const orm = require( './db/orm.mongoose' );
 const PORT = process.env.PORT || 8080;
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use( express.static('client/build/') );
-app.use( express.urlencoded({ extended: false }) );
 
 // PORT is only set by Heroku, else we know it's local
 // if( !process.env.PORT && !fs.existsSync('.env') ){
@@ -17,7 +18,7 @@ app.use( express.urlencoded({ extended: false }) );
 
 //save book in the database
 app.post('/api/post/book', async function( req, res ) {
-    console.log(req.body)
+    // console.log(req.body)
     const bookData = req.body;
     // console.log( bookData)
     const saveBook = await orm.saveBookData( bookData )

@@ -18,10 +18,12 @@ function BookData(props) {
         // console.log( 'the data to save in the server', data)
         let saveBookData = {
                             title: data.title,
+                            authors: data.authors,
+                            description: data.description,
                             infoLink: data.infoLink,
                             image: data.imageLinks.thumbnail
         } 
-        console.log('the save book data is', saveBookData)
+        // console.log('the save book data is', saveBookData)
 
         const apiBooks = await fetch('/api/post/book', {   
             method: 'POST',
@@ -30,15 +32,11 @@ function BookData(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(saveBookData),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-             console.log('Success:', data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+        }).then( result=>result.json())
+            alert(apiBooks.message)
         }    
+
+       
     
     return (
         <div>
