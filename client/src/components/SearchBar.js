@@ -11,15 +11,16 @@ function SearchBar(props) {
 
         let searchInput = e.target.value;
         setMyInput(searchInput);
-        console.log(myInput)
+        // console.log(myInput)
     }
 
    async function handleClick(e){
         e.preventDefault();
+        console.log('my input is', myInput)
         let bookListResult = await fetch( `https://www.googleapis.com/books/v1/volumes?q=${myInput}` ).then( result => result.json()  )
         
         setBookList( bookListResult.items )
-        // console.log(bookList);
+        console.log('booklist is', bookListResult.items );
         setMyInput(' ');
 
     }
@@ -31,7 +32,7 @@ function SearchBar(props) {
                             <div class="input-group mb-3 ">
                                 <input type="text" value={myInput} class="form-control" placeholder="Enter a book" onChange={handleChange}/>
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" value={myInput} type="button" id="button-addon2" onClick={handleClick}>Search</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleClick}>Search</button>
                                 </div>
                             </div>
                         </div>

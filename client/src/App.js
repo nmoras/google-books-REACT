@@ -1,17 +1,27 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
-import Header from './components/Header';
-import SearchBar from './components/SearchBar';
+import NavBar from './components/NavBar';
+import BookSearch from './components/BookSearch';
+import Favorites from './components/Favorites';
 
 function App() {
   return (
-    <div class="container-fluid">
-        <div className="App">
-          <Header />
-          
-      
+
+    <Router>
+      <div class="container-fluid">
+        <div>
+          <NavBar />
+            
+            <Route exact path={["/"]} component={BookSearch} />
+            <Route exact path={["/favorites"]} component={Favorites} />
+            {/* <Route exact path={["/contact-me"]} component={ContactMe} /> */}
+               
         </div>
-    </div>
+      </div>
+
+    </Router>
+    
     
   );
 }
