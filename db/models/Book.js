@@ -5,10 +5,8 @@ const bookSchema = new Schema({
    
   books: [
       {
-        type: {type:String},
         title: {type: String},
-        authors: {type: String},
-        averageRating: {type: Number},
+        authors: [{type: String}],
         description: {type: String},
         infoLink: {type: String},
         image:{type: String}

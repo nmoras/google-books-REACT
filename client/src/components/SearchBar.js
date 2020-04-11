@@ -16,11 +16,11 @@ function SearchBar(props) {
 
    async function handleClick(e){
         e.preventDefault();
-        console.log('my input is', myInput)
+        // console.log('my input is', myInput)
         let bookListResult = await fetch( `https://www.googleapis.com/books/v1/volumes?q=${myInput}` ).then( result => result.json()  )
         
         setBookList( bookListResult.items )
-        console.log('booklist is', bookListResult.items );
+        // console.log('booklist is', bookListResult.items );
         setMyInput(' ');
 
     }

@@ -9,10 +9,30 @@ const app = express();
 app.use( express.static('client/build/') );
 app.use( express.urlencoded({ extended: false }) );
 
-//save book in the database
-app.post('/api/book/:id/', async function( req,res ){
+// PORT is only set by Heroku, else we know it's local
+// if( !process.env.PORT && !fs.existsSync('.env') ){
+//     console.log( `*ERROR* You need a .env file (with DB_NAME,...)` );
+//     process.exit();
+// }
 
+//save book in the database
+app.post('/api/post/book', async function( req, res ) {
+    console.log(req.body)
+    const bookData = req.body;
+    // console.log( bookData)
+    const saveBook = await orm.saveBookData( bookData )
+    res.send(saveBook);
+    
 });
+
+app.get('/api/favorites/list', async function(req, res){
+
+    const getBooks = await orm.fetchBooksData();
+    console.log(getBooks)
+    res.send(getBooks)
+})
+
+
 
 app.listen( PORT, function(){
     console.log( `[everest server] RUNNING, http://localhost:${PORT}` );

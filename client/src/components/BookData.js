@@ -18,20 +18,27 @@ function BookData(props) {
         // console.log( 'the data to save in the server', data)
         let saveBookData = {
                             title: data.title,
-                            authors: data.authors,
-                            description: data.description,
                             infoLink: data.infoLink,
                             image: data.imageLinks.thumbnail
         } 
-        console.log(saveBookData)
+        console.log('the save book data is', saveBookData)
 
-        let apiBooks = await fetch('/api/post/book', {
+        const apiBooks = await fetch('/api/post/book', {   
             method: 'POST',
-            body: JSON.stringify(saveBookData)
-        }).then( result=>result.json())
-       
-   }
-  
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(saveBookData),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+             console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        }    
     
     return (
         <div>
@@ -85,21 +92,3 @@ function BookData(props) {
     )
 }
 export default BookData
-
-// const apiResult = await fetch('/api/user/registration', 
-//             {   method: 'post',
-//                 headers: {
-//                     'Accept': 'application/json, text/plain, */*',
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: JSON.stringify(userData)
-//           }).then( result=>result.json())
-                  
-//         if( apiResult.message ){
-//             setAlertMessage( { type: 'success', message: 'Thank you successfully registered!' } );
-            
-//             setTimeout( function(){ setIsRegistered(true); }, 5000 );
-//         } else {
-//             setAlertMessage( { type: 'danger', message: apiResult.error } );
-//         }
-//     }
