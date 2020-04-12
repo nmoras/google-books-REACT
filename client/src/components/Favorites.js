@@ -16,9 +16,14 @@ function Favorites() {
         loadFavorites();
     }, [] );
 
-    function handleDeleteBook(id){
-        console.log(id);
-
+    //function to delete the image 
+    async function handleDeleteBook(id){
+        // console.log(id);
+    const deleteBook = await fetch(`/api/delete/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+          }).then( result=>result.json()) 
+          alert(deleteBook.message)
     }
  
 
@@ -32,7 +37,12 @@ function Favorites() {
                                 <h5 class="card-title">{item.title}</h5>
                                 <div class="card-body justify-content-center">
                                     {/* <p class="card-text">{item.title} </p> */}
-                                    <button onClick={() => handleDeleteBook(item._id)}>Delete</button>
+                                    <form>
+                                        <button onClick={() => handleDeleteBook(item._id)}>Delete</button>
+
+                                    </form>
+                                    
+                                    
                                 </div>
                         </div>
                     </div>
