@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react'
 
 function Favorites() {
     const [books, setBooks] = useState([] )
+    const [ alertMessage, setAlertMessage ] = useState( { type: "", message: ""} );
+
     async function loadFavorites(){
         const savedBooks = await fetch('/api/favorites/list').then( result => result.json() )  
         let newBookList = savedBooks.dbfetchBooks
@@ -10,7 +12,7 @@ function Favorites() {
         console.log('saved books from db are', savedBooks.dbfetchBooks)
         
     }
-    console.log(books);
+    
 
     useEffect( function(){
         loadFavorites();
@@ -24,18 +26,28 @@ function Favorites() {
             headers: { "Content-Type": "application/json" },
           }).then( result=>result.json()) 
           alert(deleteBook.message)
+
+          if(deleteBook.message){
+            setAlertMessage( { type: 'success', message: 'Book deleted from favorites' } );
+            return;
+        };
     }
- 
+    
 
     return (
-        <>
+        <div>
+
+            <div className={ alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide' } role="alert">
+                {alertMessage.message}
+            </div>
+
              {(books.map( item => 
                 
-                    <div class="col-md-4 d-inline-flex flex-row justify-content-around">
-                        <div class="card mb-4 box-shadow">
-                            <img class="img-thumbnail" src={item.image} alt="Card cap"/>
-                                <h5 class="card-title">{item.title}</h5>
-                                <div class="card-body justify-content-center">
+                    <div className="col-md-4 d-inline-flex flex-row justify-content-around mt-4" >
+                        <div className="card mb-4 box-shadow cardfav" style={{backgroundColor: 'white'}}>
+                            <img className="img-thumbnail imgbook" src={item.image} alt="Card cap"/>
+                                <h5 className="card-title">{item.title}</h5>
+                                <div className="card-body justify-content-center">
                                     {/* <p class="card-text">{item.title} </p> */}
                                     <form>
                                         <button onClick={() => handleDeleteBook(item._id)}>Delete</button>
@@ -48,8 +60,8 @@ function Favorites() {
                     </div>
                
             ))}
-        )
-        </>
+        
+        </div>
         )
 
     }

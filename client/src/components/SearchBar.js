@@ -27,12 +27,15 @@ function SearchBar(props) {
 
     return (
         <div>
-            <div class="row justify-content-center searchrow">
-                        <div class="col-8 searchdiv p-4">
-                            <div class="input-group mb-3 ">
-                                <input type="text" value={myInput} class="form-control" placeholder="Enter a book" onChange={handleChange}/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleClick}>Search</button>
+            <div className="row justify-content-center searchrow">
+                        
+                        <div className="col-8 searchdiv p-4">
+                        <h1 className="text-center pt-3">Book Search Engine</h1>
+                               
+                            <div className="input-group mb-3 ">
+                                <input type="text" value={myInput} className="form-control" placeholder="Enter a book" onChange={handleChange}/>
+                                <div className="input-group-append">
+                                    <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleClick}>Search</button>
                                 </div>
                             </div>
                         </div>

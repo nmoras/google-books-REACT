@@ -29,8 +29,15 @@ app.post('/api/post/book', async function( req, res ) {
 app.get('/api/favorites/list', async function(req, res){
 
     const getBooks = await orm.fetchBooksData();
-    console.log(getBooks)
+    // console.log('The fetched data is', getBooks)
     res.send(getBooks)
+})
+
+app.delete('/api/delete/:id', async function(req, res){
+    console.log('the req params is', req.params)
+    const id = req.params.id;
+    const deleteBookDb = await orm.deleteBookFn(id); 
+    res.send(deleteBookDb)
 })
 
 

@@ -8,8 +8,8 @@ function Header() {
     
     return (
         <div>
-            <div class="row headerdiv">
-                <div class="col-lg">
+            <div className="row headerdiv">
+                <div className="col-lg">
                     <SearchBar />
                 </div>
             </div>

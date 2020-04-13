@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
 function BookData(props) {
+    const [ alertMessage, setAlertMessage ] = useState( { type: "", message: ""} );
     console.log('the props is', props)
     // console.log(props.bookList[0].volumeInfo.title);
 
@@ -34,22 +35,29 @@ function BookData(props) {
             body: JSON.stringify(saveBookData),
         }).then( result=>result.json())
             alert(apiBooks.message)
+            if(apiBooks.message){
+                setAlertMessage( { type: 'success', message: 'Book added to favorites!' } );
+                return;
+            }
         }    
 
-       
+            
     
     return (
-        <div>
+        <div style={{backgroundColor: 'white'}}>
+            <div className={ alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide' } role="alert">
+                {alertMessage.message}
+            </div>
             {props.bookList.map( item => (
-                    <div class='row justify-content-center mt-2'>
-                         <div class='col-10 p-2' >
-                             <div class="row">
-                                <div class="col-3 imgcontainer">
-                                    <img class="img-thumbnail" alt={item.volumeInfo.title} src={item.volumeInfo.imageLinks.thumbnail} />
+                    <div className='row justify-content-center mt-2' >
+                         <div className='col-10 p-2' >
+                             <div className="row">
+                                <div className="col-3 imgcontainer">
+                                    <img className="img-thumbnail imgbook" alt={item.volumeInfo.title} src={item.volumeInfo.imageLinks.thumbnail} />
                                 </div>
-                                <div class="col-9 emp-content">
-                                    <div class='row'>
-                                        <div class='col'>
+                                <div className="col-9 emp-content">
+                                    <div className='row'>
+                                        <div className='col'>
                                             <ul style={Style.listtype} >
                                                 <li >
                                                     <strong>Title:</strong> {item.volumeInfo.title}
@@ -68,8 +76,8 @@ function BookData(props) {
                                                 </li>
                                             </ul>
                                             
-                                            <div class="row justify-content-center">
-                                                <div class="col-4">
+                                            <div className="row justify-content-center">
+                                                <div className="col-4">
                                                     <button onClick={() => handleViewBook(item.volumeInfo.infoLink)} style={{backgroundColor: 'black', padding: '1rem', color: 'white'}}>View</button>
                                                     <button onClick={() => handleSaveBook(item.volumeInfo)} style={{backgroundColor: 'black', padding: '1rem', color: 'white'}}>Save</button>
                                                 </div>

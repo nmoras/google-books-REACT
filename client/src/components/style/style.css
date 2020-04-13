@@ -11,6 +11,11 @@
     margin-top: 5rem;
     
 }
-div{
-    border: 1px solid black;
+.imgbook{
+    height: 30vh;
+    object-fit: cover;
+}
+
+.cardfav{
+    padding:2rem;
 }

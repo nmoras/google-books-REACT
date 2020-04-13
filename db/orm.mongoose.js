@@ -23,13 +23,26 @@ async function saveBookData(data){
 
 async function fetchBooksData(){
 
-    const dbfetchBooks = await db.book.find({ })
-    console.log(dbfetchBooks);
+    const dbfetchBooks = await db.book.find({})
+    // console.log('the orm fetch books is', dbfetchBooks);
+    return{
+        dbfetchBooks
+    };
+}
+
+async function deleteBookFn(id){
+    const deleteBook = await db.book.findOneAndRemove({ "_id" :`${id}`}, function (err) {
+        if (err) return handleError(err)
+     });
+     
+     return { message: "Book successfully deleted!!"};
+
 }
 
 module.exports = {
     saveBookData,
-    fetchBooksData
+    fetchBooksData,
+    deleteBookFn
 }
 // dbWorkout = await db.Workout.create( body );
 //     console.log('the workout is', dbWorkout)
