@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://localhost:27017/googlebooks`, {useNewUrlParser: true});
+// mongoose.connect(`mongodb://localhost:27017/googlebooks`, {useNewUrlParser: true});
 
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true });
 
 const db = require( './models' );
 
