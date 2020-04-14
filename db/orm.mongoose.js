@@ -15,7 +15,7 @@ async function saveBookData(data){
         image: data.image
     };
     console.log('the bookdata is', bookData)
-    const dbBook = new db.book( bookData )
+    const dbBook = new db.Book( bookData )
     const saveBook = await dbBook.save()
     return{message: "The book is successfully saved", id: saveBook._id}
 
@@ -23,7 +23,7 @@ async function saveBookData(data){
 
 async function fetchBooksData(){
 
-    const dbfetchBooks = await db.book.find({})
+    const dbfetchBooks = await db.Book.find({})
     // console.log('the orm fetch books is', dbfetchBooks);
     return{
         dbfetchBooks
@@ -31,7 +31,7 @@ async function fetchBooksData(){
 }
 
 async function deleteBookFn(id){
-    const deleteBook = await db.book.findOneAndRemove({ "_id" :`${id}`}, function (err) {
+    const deleteBook = await db.Book.findOneAndRemove({ "_id" :`${id}`}, function (err) {
         if (err) return handleError(err)
      });
      
