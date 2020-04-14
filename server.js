@@ -2,15 +2,16 @@ require('dotenv').config(); // --> process.env
 const express = require( 'express' );
 const fs = require('fs');
 const orm = require( './db/orm.mongoose' );
+const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use( express.static('client/build/') );
+app.use( express.static('./client/build/') );
 
-app.use(express.static(path.join(dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client/build/')));
 
 // PORT is only set by Heroku, else we know it's local
 // if( !process.env.PORT && !fs.existsSync('.env') ){
@@ -43,7 +44,7 @@ app.delete('/api/delete/:id', async function(req, res){
 })
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/build/', 'index.html'));
 });
 
 app.listen( PORT, function(){

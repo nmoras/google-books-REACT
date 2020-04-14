@@ -44,7 +44,7 @@ function Favorites() {
              {(books.map( item => 
                 
                     <div className="col-md-4 d-inline-flex flex-row justify-content-around mt-4" >
-                        <div className="card mb-4 box-shadow cardfav" style={{backgroundColor: 'white'}}>
+                        <div className="card mb-4 box-shadow cardfav" style={{backgroundColor: 'white', border: '2px solid black'}}>
                             <img className="img-thumbnail imgbook" src={item.image} alt="Card cap"/>
                                 <h5 className="card-title">{item.title}</h5>
                                 <div className="card-body justify-content-center">
