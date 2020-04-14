@@ -10,6 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use( express.static('client/build/') );
 
+app.use(express.static(path.join(dirname, 'build')));
+
 // PORT is only set by Heroku, else we know it's local
 // if( !process.env.PORT && !fs.existsSync('.env') ){
 //     console.log( `*ERROR* You need a .env file (with DB_NAME,...)` );
@@ -40,7 +42,9 @@ app.delete('/api/delete/:id', async function(req, res){
     res.send(deleteBookDb)
 })
 
-
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(dirname, 'build', 'index.html'));
+});
 
 app.listen( PORT, function(){
     console.log( `[everest server] RUNNING, http://localhost:${PORT}` );
