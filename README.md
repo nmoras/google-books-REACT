@@ -11,4 +11,4 @@ React-based Google Books Search app using useState and compenents. The app makes
   6. Bootstrap
 
 # Book Search Engine
-![Book Search Engine](\my-app\client\src\assets\booksearchengine.png)
+![Book Search Engine](google-books-REACT\my-app\client\src\assets\booksearchengine.png)
